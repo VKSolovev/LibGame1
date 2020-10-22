@@ -1,0 +1,40 @@
+id 0 Crisis in Crimea
+There are some terrorists who wanted to return Crimea back.
+2
+We will never return it
+-1
+-1
+We have to do this
+-1
+-1
+
+id 1 Reform in army
+We have bad army and it needs reform. We can hire new generals (tactic +1) or focus on increasing of morale of our soldiers (morale + 20%)
+2
+Hire generals
+1
+0
+Inspire soldiers
+1
+1
+
+id 2 Unrests in region
+People organise unrests in the region. We should do something!
+1
+Oh, God
+-1
+-1
+
+id 3 Revolt in region
+This terrorists organised revolt in our country
+1
+Crush them!
+-1
+-1
+
+id 4 Conflict in region
+Nothing happens
+1
+Well
+-1
+-1
