@@ -47,4 +47,9 @@ public class GovMod extends Mod {
     public double[] getModifiers() {
         return new double[0];
     }
+
+    @Override
+    public int getInfluence() {
+        return modInfluence;
+    }
 }

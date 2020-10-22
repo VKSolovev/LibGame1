@@ -72,4 +72,6 @@ public abstract class Mod {
     public abstract void setLocalId(int localID);
 
     public abstract double[] getModifiers();
+
+    public abstract int getInfluence();
 }

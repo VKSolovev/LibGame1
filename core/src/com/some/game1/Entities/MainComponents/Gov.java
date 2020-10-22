@@ -33,10 +33,10 @@ public class Gov {
 
 
     private int influence=100;
-
+    private GovMods govMods = new GovMods();
 
     public void incInfl(){
-        influence += 50;
+        influence += 50 + govMods.totalInfl();
         if (influence > 1000){
             influence = 1000;
         }
@@ -51,6 +51,7 @@ public class Gov {
         regions.turn();
         military.turn();
         eventListener.turn();
+        govMods.turn();
     }
 
     public void addInf(int i){

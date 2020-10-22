@@ -101,4 +101,5 @@ public class BS {
             e.printStackTrace();
         }
     }
+    public static String[] names = {"Vladimir Solovev", "Ildar Zagretdinov"};
 }
