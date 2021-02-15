@@ -63,4 +63,9 @@ public class EcMod extends Mod {
     public double[] getModifiers() {
         return new double[0];
     }
+
+    @Override
+    public int getInfluence() {
+        return 0;
+    }
 }

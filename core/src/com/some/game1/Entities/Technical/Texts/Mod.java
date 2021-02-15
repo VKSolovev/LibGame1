@@ -1,6 +1,8 @@
 package com.some.game1.Entities.Technical.Texts;
 
-public abstract class Mod {
+import java.io.Serializable;
+
+public abstract class Mod implements Serializable {
     protected int id;
     protected boolean endless;
     protected int duration = 0;

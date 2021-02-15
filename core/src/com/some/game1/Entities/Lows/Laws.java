@@ -6,7 +6,7 @@ import com.some.game1.Entities.MainComponents.BS;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Laws {
+public class Laws implements Serializable {
     public void constructLaws(){
         try {
             for (int i = 0; i < BS.numLows; i ++) {

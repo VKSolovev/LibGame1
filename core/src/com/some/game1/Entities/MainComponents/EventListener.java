@@ -2,7 +2,9 @@ package com.some.game1.Entities.MainComponents;
 
 import com.some.game1.Screens.MainScreen;
 
-public class EventListener {
+import java.io.Serializable;
+
+public class EventListener implements Serializable {
     private Gov gov;
     private double chanceOfEvent = 0.2;
     private int[] randomEvents = new int[]{1};

@@ -3,16 +3,18 @@ package com.some.game1.Entities.Economy;
 import com.some.game1.Entities.MainComponents.BS;
 import com.some.game1.Entities.MainComponents.Gov;
 
+import java.io.Serializable;
+
 /*
  */
-public class Economy {
+public class Economy implements Serializable {
     public Economy(Gov gov) {
         this.gov = gov;
         for (int i = 0; i < BS.baseEconomySpheres.size(); i++){
             shares[i] = BS.baseEconomySpheres.get(i);
             minimumShares[i] = BS.baseEconomySpheres.get(i);
         }
-        money = 1000;
+        money = 10000;
     }
 
     private Gov gov;

@@ -5,9 +5,10 @@ import com.some.game1.Entities.MainComponents.BS;
 import com.some.game1.Entities.Regions.Region;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Estates {
+public class Estates implements Serializable {
     private Estate[] estates;
     private Gov gov;
 
@@ -72,12 +73,16 @@ public class Estates {
     private void recalPow(){
         for (Region reg: gov.getRegions().getRegions()){
             double[] basePow = new double[estates.length];
+            double sum_power = 0;
             for (int i = 0; i < estates.length; i++){
                 //TODO add support and suppress
                 basePow[i] = reg.getBP(estates[i].getPolitics(), estates[i].getId(), this)
                         *estates[i].getEstatesMods().getInfluenceMod(reg.getId())
                         - estates[i].getInfluence()[reg.getId()];
-                estates[i].setInfluence(reg.getId(), basePow[i]/10+estates[i].getInfluence()[reg.getId()]);
+                sum_power += basePow[i]/10+estates[i].getInfluence()[reg.getId()];
+            }
+            for (int i = 0; i < estates.length; i++){
+                estates[i].setInfluence(reg.getId(), (basePow[i]/10+estates[i].getInfluence()[reg.getId()])/sum_power*100);
             }
         }
     }
@@ -85,8 +90,8 @@ public class Estates {
     public String[] getInfo(){
         String[] res = new String[estates.length];
         for (Estate estate: estates){
-            res[estate.getId()] = estate.getName() + ". Loyalty " + estate.getLoyalty() + "; Average influence " +
-                    estate.getTotInfluence();
+            res[estate.getId()] = estate.getName() + ". Loyalty " + (int) estate.getLoyalty() + "; Average influence " +
+                    (int) estate.getTotInfluence();
         }
         return res;
     }
@@ -95,7 +100,7 @@ public class Estates {
         String[] res = new String[estates.length];
         for (Estate estate: estates){
             res[estate.getId()] = estate.getName() + ". Influence " +
-                    estate.getInfluence()[id];
+                    String.format("%.2f", estate.getInfluence()[id]);
         }
         return res;
     }

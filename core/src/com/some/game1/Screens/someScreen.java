@@ -41,14 +41,14 @@ public class someScreen implements Screen {
         container.add(button);
         button.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                gov.turn();
+                gov.turn(true);
             }
         });
         TextButton button1 = new TextButton("Turn", skin);
         container.add(button1);
         button1.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                gov.turn();
+                gov.turn(true);
             }
         });
 

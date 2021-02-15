@@ -19,7 +19,7 @@ public class MainScreen extends Screen {
 
     public void startGame(){
         System.out.println("Hello, game is created you can check something. Print info to get more information and commands");
-        gov.turn();
+        gov.turn(true);
         play();
     }
 

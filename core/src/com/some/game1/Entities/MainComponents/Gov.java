@@ -8,22 +8,27 @@ import com.some.game1.Entities.Regions.Region;
 import com.some.game1.Entities.Regions.Regions;
 import com.some.game1.Entities.War.Military;
 
+import java.io.Serializable;
 
-public class Gov {
+
+public class Gov implements Serializable {
     public Gov() {
         estates = new Estates(this);
         laws = new Laws(this);
         regions = new Regions(this);
         economy = new com.some.game1.Entities.Economy.Economy(this);
         military = new Military(this);
+        /*
         for (int i = 0; i < 11; i++){
-            turn();
+            turn(false);
         }
+
+         */
         for (Region region: regions.getRegions()){
             region.getUnrest().totalPeace();
         }
     }
-
+    private int turn_num = BS.turn;
     private Estates estates;
     private Laws laws;
     private Regions regions;
@@ -42,7 +47,8 @@ public class Gov {
         }
     }
 
-    public void turn(){
+    public void turn(boolean update_mods){
+        turn_num += 1;
         BS.turn += 1;
         incInfl();
         economy.turn();
@@ -50,8 +56,10 @@ public class Gov {
         laws.turn();
         regions.turn();
         military.turn();
-        eventListener.turn();
-        govMods.turn();
+        if (update_mods) {
+            eventListener.turn();
+            govMods.turn();
+        }
     }
 
     public void addInf(int i){
@@ -87,5 +95,9 @@ public class Gov {
 
     public EventListener getEventListener() {
         return eventListener;
+    }
+
+    public int getTurn_num() {
+        return turn_num;
     }
 }

@@ -64,14 +64,14 @@ public abstract class Screen {
             Main.mainScreen.play();
             return true;
         } else if (command.equals("turn")|| command.equals("t")){
-            gov.turn();
+            gov.turn(true);
             return true;
         } else if (command.equals("12turn")|| command.equals("lt")){
             System.out.println("Enter number of years");
             Scanner in = new Scanner(System.in);
             int num = 12 * Integer.parseInt(in.nextLine());
             for (int i = 0; i < num; i++) {
-                gov.turn();
+                gov.turn(true);
             }
             return true;
         }else if (command.equals("cur info")|| command.equals("ci")){

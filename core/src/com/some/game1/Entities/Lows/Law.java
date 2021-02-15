@@ -4,9 +4,10 @@ package com.some.game1.Entities.Lows;
 
 import com.some.game1.Entities.MainComponents.BS;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Law {
+public class Law implements Serializable {
     public Law(String name, String ideology, int polId, boolean against, int id, int cLP, int clA) {
         this.name = name;
         this.politic = ideology;

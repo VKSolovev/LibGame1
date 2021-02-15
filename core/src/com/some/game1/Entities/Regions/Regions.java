@@ -3,7 +3,9 @@ package com.some.game1.Entities.Regions;
 import com.some.game1.Entities.Estates.Estate;
 import com.some.game1.Entities.MainComponents.Gov;
 
-public class Regions {
+import java.io.Serializable;
+
+public class Regions implements Serializable {
     private Gov gov;
 
     public Regions(Gov gov) {
@@ -29,10 +31,10 @@ public class Regions {
             double infL = 0;
             double infD = 0;
             for (Estate estate: gov.getEstates().getEstates()){
-                if (estate.getLoyalty() < 50){
+                if (estate.getLoyalty() < 45){
                     infD += estate.getInfluence()[region.getId()] * (50 - estate.getLoyalty());
                 }
-                if (estate.getLoyalty() > 50){
+                if (estate.getLoyalty() > 55){
                     infL -= estate.getInfluence()[region.getId()] * (50 - estate.getLoyalty());
                 }
 

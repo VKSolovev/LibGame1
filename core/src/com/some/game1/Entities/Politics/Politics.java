@@ -2,7 +2,9 @@ package com.some.game1.Entities.Politics;
 
 import com.some.game1.Entities.Estates.Estates;
 
-public class Politics {
+import java.io.Serializable;
+
+public class Politics implements Serializable {
     public Politics() {
         int numPol = 2;
         politics = new Politic[numPol];

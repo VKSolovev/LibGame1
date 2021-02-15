@@ -15,7 +15,7 @@ public class EstMod extends Mod {
         this.endless = endless;
         this.id = id;
         //TODO сделать описание эффекта
-        effect = "Change Loyalty " + changeLoyalty + "; Change Influence " + changeTotalInfluence;
+        effect = "Change Loyalty " + changeLoyalty + "; Change Influence " + (int) (changeTotalInfluence*100) + "%";
         activate();
     }
     private int changeLoyalty;

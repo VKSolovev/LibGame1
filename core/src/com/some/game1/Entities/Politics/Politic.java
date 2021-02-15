@@ -1,6 +1,8 @@
 package com.some.game1.Entities.Politics;
 
-public class Politic {
+import java.io.Serializable;
+
+public class Politic implements Serializable {
     public Politic(String name, int id, double supportShare) {
         this.name = name;
         this.id = id;

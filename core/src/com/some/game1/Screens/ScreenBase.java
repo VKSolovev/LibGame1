@@ -10,8 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.some.game1.Entities.MainComponents.BS;
 import com.some.game1.Entities.MainComponents.Gov;
 import com.some.game1.Strategy;
+
+import java.io.IOException;
 
 public abstract class ScreenBase implements Screen {
     protected Gov gov;
@@ -127,6 +130,25 @@ public abstract class ScreenBase implements Screen {
         exit.addListener(new ClickListener(){
             public void clicked(InputEvent event, float x, float y) {
                 System.exit(0);
+            }
+        });
+        save.addListener(new ClickListener(){
+            public void clicked(InputEvent event, float x, float y) {
+                try {
+                    strategy.saveGame();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        load.addListener(new ClickListener(){
+            public void clicked(InputEvent event, float x, float y) {
+                try {
+                    strategy.loadGame();
+                    BS.turn = strategy.getGov().getTurn_num();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

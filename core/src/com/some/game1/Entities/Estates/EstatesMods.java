@@ -8,6 +8,7 @@ package com.some.game1.Entities.Estates;
 import com.some.game1.Entities.Technical.Texts.Mod;
 import com.some.game1.Entities.Technical.Texts.Mods;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class EstatesMods extends Mods {

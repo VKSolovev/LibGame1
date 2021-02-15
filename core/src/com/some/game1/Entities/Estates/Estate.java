@@ -4,9 +4,10 @@ package com.some.game1.Entities.Estates;
 import com.some.game1.Entities.Lows.Law;
 import com.some.game1.Entities.MainComponents.BS;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Estate {
+public class Estate implements Serializable {
 
     private boolean[] constructLows(String ide){
         int numLows = BS.numLows;
@@ -37,6 +38,8 @@ public class Estate {
         this.politics = constructLows(ideology);
         influence = new double[]{50, 50, 50, 50};
         estatesMods = new EstatesMods();
+        changeLoyalty.add(""+50);
+        changeLoyalty.add(""+0);
     }
     private int id;
     private String name;
@@ -85,12 +88,12 @@ public class Estate {
         if (ruleParty){
             loyalty += 20;
         }
-        changeLoyalty.add("Potential loyalty is " + loyalty);
+        changeLoyalty.add(String.format("%.2f", loyalty));
         double change;
         if (loyalty > stloy){
-            change = Math.log(loyalty-stloy);
+            change = (loyalty-stloy)/10;
         } else {
-            change = -Math.log(-loyalty+stloy);
+            change = -(-loyalty+stloy)/10;
         }
         if (change < -5){
             change = -5;
@@ -98,7 +101,7 @@ public class Estate {
         if (change > 5){
             change = 5;
         }
-        changeLoyalty.add("Change loyalty " + change);
+        changeLoyalty.add(String.format("%.2f", change));
         loyalty = stloy + change;
     }
 
@@ -218,5 +221,9 @@ public class Estate {
 
     public boolean isRuleParty() {
         return ruleParty;
+    }
+
+    public ArrayList<String> getChangeLoyalty() {
+        return changeLoyalty;
     }
 }

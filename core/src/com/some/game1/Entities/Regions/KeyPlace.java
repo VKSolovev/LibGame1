@@ -8,7 +8,9 @@ package com.some.game1.Entities.Regions;
  */
 
 
-public class KeyPlace {
+import java.io.Serializable;
+
+public class KeyPlace implements Serializable {
     private String name;
     private boolean revolt;
     private int type;

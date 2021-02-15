@@ -7,7 +7,9 @@ import com.some.game1.Entities.MainComponents.Gov;
 import com.some.game1.Entities.Politics.Politic;
 import com.some.game1.Entities.Politics.Population;
 
-public class Region {
+import java.io.Serializable;
+
+public class Region implements Serializable {
     private int type; //farm - 0, city - 1, mines - 2
     private int domEstate;
     private int id;
@@ -52,7 +54,7 @@ public class Region {
     public String[] getPolitics(){
         String[] res = new String[BS.numPolitics];
         for (Politic politic: population.getPolitics().getPolitics()){
-            res[politic.getId()] = politic.getName() + " is supported by " + politic.getSupportShare() + "%";
+            res[politic.getId()] = politic.getName() + " is supported by " + String.format("%.2f", politic.getSupportShare()) + "%";
         }
         return res;
     }

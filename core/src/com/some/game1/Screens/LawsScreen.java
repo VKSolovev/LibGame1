@@ -31,9 +31,9 @@ public class LawsScreen extends ScreenBase {
         container.setHeight(stage.getHeight());
         container.debugAll();
         //container.setFillParent(true);
-        container.setX(0);
-        container.setY(0);
-        container.left().top();
+        //container.setX(0);
+        //container.setY(0);
+        container.left().center();
         container.pad(0, 0, 0, stage.getWidth()/2);
         stage.addActor(container);
         for (final Law law: gov.getLaws().getLaws()){

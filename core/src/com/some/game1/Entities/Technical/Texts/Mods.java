@@ -1,8 +1,9 @@
 package com.some.game1.Entities.Technical.Texts;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Mods {
+public abstract class Mods implements Serializable {
     protected Mod[] mods;
     protected ArrayList<Mod> activatedMods = new ArrayList<>();
 

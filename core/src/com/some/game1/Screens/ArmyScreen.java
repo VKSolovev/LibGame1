@@ -103,7 +103,7 @@ public class ArmyScreen extends ScreenBase {
             armT.add(new Label("Morale" , skin));
             armT.add(new Label("" + army.getMorale() , skin));
             armT.add(new Label("Experience" , skin));
-            armT.add(new Label("" + army.getExperience() , skin));
+            armT.add(new Label("" + String.format("%.2f", army.getExperience()) , skin));
             armT.row();
             final Button move = new TextButton("Move", skin);
             armT.add(move);

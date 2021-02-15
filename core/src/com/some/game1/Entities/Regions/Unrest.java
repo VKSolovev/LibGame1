@@ -6,9 +6,10 @@ import com.some.game1.Entities.Technical.Texts.Event;
 import com.some.game1.Entities.War.Army;
 import com.some.game1.Screens.MainScreen;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Unrest {
+public class Unrest implements Serializable {
     private int discontent = 0;
     private int loyalty = 0;
     private boolean unrest;
@@ -36,7 +37,7 @@ public class Unrest {
     public void turn(double inflL, double inflO){
         recountGovStr();
         keyPlacesConstruct(region.getType());
-        riseD = 4.0*inflO/150;
+        riseD = 3.0*inflO/150;
         riseL = 1.0*inflL/100;
         discontent += riseD + BS.baseRiseUnrest;
         loyalty += riseL + BS.baseRiseLoy;
@@ -65,10 +66,10 @@ public class Unrest {
     private void updateInfo(){
         riseDis.clear();
         riseDis.add("Base rise (" + BS.baseRiseUnrest + ")");
-        riseDis.add("Disloyal parties (" + riseD + ")");
+        riseDis.add("Disloyal parties (" + String.format("%.2f", riseD) + ")");
         riseLoy.clear();
         riseLoy.add("Base rise (" + BS.baseRiseLoy + ")");
-        riseLoy.add("Loyal parties (" + riseL + ")");
+        riseLoy.add("Loyal parties (" + String.format("%.2f", riseL) + ")");
     }
 
     private void keyPlacesConstruct(int type){
@@ -124,11 +125,14 @@ public class Unrest {
             System.out.println("fight");
             int initiative = (int) (Math.random() * 3); // 2 - government attack, 1 - revolt army attack, 0 - nothing
             double strRate = 1.0*totStr/revoltStrength;
-            System.out.println("totStr" + totStr);
+            System.out.println("totStr " + totStr + " " + revoltStrength + " " + region.getId());
             if (revoltStrength < 1.0*totStr/10){
                 revolt = false;
                 unrest = false;
                 discontent = 0;
+                Event peace = BS.events.get(5).clone();
+                peace.setAddingName(" " + region.getId());
+                MainScreen.events.add(peace);
                 return;
             }
             lastFight = "Nothing happened";
@@ -206,7 +210,7 @@ public class Unrest {
 
     private void recountStr(){
         revoltStrength = (int) (revoltSize* Math.exp(experience) * (Math.log10(1.0*gunsAmount/revoltSize + 1)+
-                Math.log10(BS.tankEff * experience *tanksAmount/revoltSize + 1)));
+                Math.log10(BS.tankEff * experience *tanksAmount/revoltSize + 1))) *100;
     }
 
     private void revolt(double inflO){
@@ -247,7 +251,7 @@ public class Unrest {
         if (revolt){
             res.set(4, "Current situation is revolt");
             res.add("Revolt strength " + revoltStrength);
-            res.add("Current morale " + morale);
+            res.add("Current morale " + String.format("%.2f", morale));
         }
         res.add("Info about disloyal");
         res.addAll(riseDis);

@@ -38,7 +38,7 @@ public class EstateScreen extends ScreenBase {
             modTable.add(new Label(m, skin));
         }
         modTable.left().top();
-        modTable.pad(100,400,0,0);
+        modTable.pad(100,600,0,0);
         modTable.defaults().left();
     }
 
@@ -51,15 +51,15 @@ public class EstateScreen extends ScreenBase {
         modTable.setFillParent(true);
         modTable.add(new Label("Mods", skin));
         modTable.left().top();
-        modTable.pad(100,400,0,0);
+        modTable.pad(100,600,0,0);
         stage.addActor(modTable);
         //table with all info about parties
         ArrayList<Table> eTable = new ArrayList<>();
         for (final Estate estate: gov.getEstates().getEstates()){
             Table estTab = new Table();
             Label name = new Label(estate.getName(), skin);
-            Label influence = new Label("" + estate.getTotInfluence(), skin);
-            Label loyalty = new Label("" + estate.getLoyalty(), skin);
+            Label influence = new Label("" + (int) estate.getTotInfluence(), skin);
+            Label loyalty = new Label("" + (int) estate.getLoyalty(), skin);
 
             //support button
             final TextButton support = new TextButton("Support", skin);
@@ -109,10 +109,14 @@ public class EstateScreen extends ScreenBase {
             estTab.add(new Label("Name", skin));
             estTab.add(new Label("Influence", skin));
             estTab.add(new Label("Loyalty", skin));
+            estTab.add(new Label("Potential loyalty", skin));
+            estTab.add(new Label("Change in loyalty", skin));
             estTab.row();
             estTab.add(name);
             estTab.add(influence);
             estTab.add(loyalty);
+            estTab.add(new Label(estate.getChangeLoyalty().get(0), skin));
+            estTab.add(new Label(estate.getChangeLoyalty().get(1), skin));
             estTab.row();
             estTab.add(support);
             eTable.add(estTab);

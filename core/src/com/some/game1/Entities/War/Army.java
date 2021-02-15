@@ -13,7 +13,9 @@ import com.some.game1.Entities.MainComponents.BS;
 import com.some.game1.Entities.MainComponents.Gov;
 import com.some.game1.Entities.Regions.Region;
 
-public class Army {
+import java.io.Serializable;
+
+public class Army implements Serializable {
     private int gunAmount;
     private int tankAmount;
     private int size;
@@ -75,8 +77,24 @@ public class Army {
     }
 
     private double countStrength(double experience, int gunAmount, int tankAmount){
-        return (tactic * size * Math.exp(experience)* Math.log10(BS.gunEff*gunAmount/size+1)
-                *Math.log10(1.0* BS.tankEff *experience *tankAmount / size+1));
+        double coef = 1;
+        if (gunAmount > size){
+            coef += Math.min((1.0*gunAmount/size - 1)*(1.0*gunAmount/size - 1), 0.5);
+        }
+        if (gunAmount < size){
+            coef -= Math.min((1.0*gunAmount/size - 1)*(1.0*gunAmount/size - 1) * 2, 1);
+        }
+        if (tankAmount > size/10){
+            coef *= 1+Math.min((0.1*tankAmount/size - 1)*(0.1*tankAmount/size - 1)* 2, 2);
+        }
+        if (tankAmount < size/10){
+            coef *= 1-Math.min((0.1*tankAmount/size - 1)*(0.1*tankAmount/size - 1)* 2, 0.3);
+        }
+        int effective_size = Math.min(gunAmount, size);
+        int strength = (int) (tactic * (effective_size + size) * Math.exp(experience) * coef)/10;
+        return strength;
+        //return (tactic * size * Math.exp(experience)* Math.log10(BS.gunEff*gunAmount/size+1)
+        //        *Math.log10(1.0* BS.tankEff *experience *tankAmount / size+1));
     }
 
     private void recountStrength(){

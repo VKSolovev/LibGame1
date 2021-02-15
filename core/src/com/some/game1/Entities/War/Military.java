@@ -4,9 +4,10 @@ import com.some.game1.Entities.MainComponents.BS;
 import com.some.game1.Entities.MainComponents.Gov;
 import com.some.game1.Entities.Regions.Region;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Military {
+public class Military implements Serializable {
     private double maxExp;
     private ArrayList<Army> armies = new ArrayList<>();
     private Gov gov;

@@ -23,6 +23,11 @@ public class WarMod extends Mod {
         return modifiers;
     }
 
+    @Override
+    public int getInfluence() {
+        return 0;
+    }
+
 
     @Override
     public int getLocalID() {

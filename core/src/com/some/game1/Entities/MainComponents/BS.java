@@ -5,7 +5,8 @@ import com.some.game1.Entities.Technical.Texts.Event;
 import java.io.*;
 import java.util.ArrayList;
 
-public class BS {
+public class BS implements Serializable{
+    public static boolean events_show = true;
     public static int baseCoolDownLawChange = 5;
     public static int baseMovement;
     public static int numRegions = 4;
@@ -26,7 +27,7 @@ public class BS {
     public static int baseRiseLoy = -4;
     public static double baseTax = 0.2;
     public static int baseLoyalty = 50;
-    public static int turn = 0;
+    public static int turn = 1;
     public static int numLows = 4;
     public static int numPolitics = 2;
     public static ArrayList<String> namesOfPolitic = new ArrayList<>();

@@ -95,8 +95,8 @@ public class MainScreen extends ScreenBase {
         TextButton button = new TextButton("Turn", skin);
         button.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                gov.turn();
-                if (Settings.events && events.size() > 0) {
+                gov.turn(true);
+                if (Settings.events && events.size() > 0 && BS.events_show) {
                     Event curEvent = events.get(0);
                     events.remove(0);
                     strategy.setScreen(new EventScreen(curEvent, gov, strategy));

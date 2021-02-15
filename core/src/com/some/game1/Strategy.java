@@ -18,6 +18,13 @@ import com.some.game1.Entities.MainComponents.Gov;
 import com.some.game1.Screens.MainMenu;
 import com.some.game1.Screens.MainScreen;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 public class Strategy extends Game {
 	ImageButton start;
 	ImageButton exit;
@@ -47,7 +54,9 @@ public class Strategy extends Game {
 
 	@Override
 	public void create () {
-		gov.turn();
+
+		//gov.turn(true);
+
 		batch = new SpriteBatch();
 		stage = new Stage(new ScreenViewport()); //Set up a stage for the ui
 		Gdx.input.setInputProcessor(stage); //Start taking input from the ui
@@ -72,5 +81,31 @@ public class Strategy extends Game {
 		exitButtonTexture.dispose();
 		stage.dispose();
 		batch.dispose();
+	}
+
+	public void saveGame() throws IOException {
+		String dir = System.getProperty("user.dir");
+		FileOutputStream fileOutputStream = new FileOutputStream(dir + "\\savegame.svg");
+		ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+		objectOutputStream.writeObject(gov);
+
+		objectOutputStream.close();
+
+		System.out.println("Everything is Ok");
+
+	}
+
+	public void loadGame() throws IOException, ClassNotFoundException {
+		String dir = System.getProperty("user.dir");
+		FileInputStream fileInputStream = new FileInputStream(dir + "\\savegame.svg");
+		ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+		gov = (Gov) objectInputStream.readObject();
+
+		System.out.println(gov.getEconomy().getInfo()[0]);
+		System.out.println(dir);
+
+		setScreen(new MainMenu(Strategy.this));
 	}
 }

@@ -5,7 +5,9 @@ import com.some.game1.Entities.Estates.Estate;
 import com.some.game1.Entities.Estates.Estates;
 import com.some.game1.Entities.MainComponents.BS;
 
-public class Population {
+import java.io.Serializable;
+
+public class Population implements Serializable {
     private int population;
     private Politics politics;
 
